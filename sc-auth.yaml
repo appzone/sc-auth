@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sc-auth-service
+  labels:
+    v: sc
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 3000
+  selector:
+    app: sc-auth
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sc-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sc-auth
+  template:
+    metadata:
+      labels:
+        app: sc-auth
+        v: sc
+    spec:
+      containers:
+        - name: sc-auth
+          image: <IMAGE>
+          imagePullPolicy: Always
+          command: [ "node" ]
+          args: [ "server.js" ]
+          env:
+          - name: microservice
+            value: sc-auth
+          ports:
+          - containerPort: 3000
