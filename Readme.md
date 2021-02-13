@@ -17,6 +17,13 @@ Deployment: Kubernetes managed by Digitalocean
 ```
 for more detail of the api path can be found on http://167.99.29.250/sc-swagger/
 
+### Credential
+```
+sc-user:abcde
+sc-admin:abcde
+
+token expiry 6000 seconds
+```
 
 ## Configuration / Setup
 
