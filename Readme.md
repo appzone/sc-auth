@@ -33,8 +33,9 @@ npm install
 node server.js
 ```
 
-2. Docker in localhost
+2. Docker in localhost (docker token value is in do-token.txt file)
 ```
+docker login registry.digitalocean.com/sejutacita
 docker build -t xxx .
 docker run -d -it xxx
 ```
