@@ -5,6 +5,7 @@ Stack : Nodejs, ExpressJs
 Database : MongoDB hosted in MongoDb Atlas 
 CI/CD : Github actions
 Deployment: Kubernetes managed by Digitalocean
+Docker Registry : Digitalocean
 ```
 
 ### Base url : 
