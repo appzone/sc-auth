@@ -67,7 +67,7 @@ exports.login = async (req, res) => {
       payload,
       "secret",
       {
-        expiresIn: 600
+        expiresIn: 6000
       },
       (err, accessToken) => {
         if (err) throw err;
