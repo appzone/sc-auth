@@ -35,7 +35,7 @@ jobs:
       run: TAG=$(echo $GITHUB_SHA | head -c7) && docker push registry.digitalocean.com/sejutacita/sc-auth:${TAG}
 
     - name: Update deployment file
-      run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|registry.digitalocean.com/sejutacita/sc-user:'${TAG}'|' $GITHUB_WORKSPACE/sc-auth.yaml
+      run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|registry.digitalocean.com/sejutacita/sc-auth:'${TAG}'|' $GITHUB_WORKSPACE/sc-auth.yaml
 
     - name: Save DigitalOcean kubeconfig with short-lived credentials
       run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 k8s-1-20-2-do-0-sgp1-1613128011969
