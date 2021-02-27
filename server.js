@@ -16,6 +16,7 @@ app.use(function(req, res, next) {
     next();
 });
 
+
 const dbConfig = require('./config/database.config.js');
 const mongoose = require('mongoose');
 
