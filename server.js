@@ -1,5 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
+const API_SERVICE_URL = "https://api.acropolisasia.com/";
 
 const app = express();
 
@@ -26,6 +29,14 @@ app.get('/sc-auth/', (req, res) => {
 });
 
 require('./app/routes/auth.routes.js')(app);
+// Proxy endpoints
+app.use('/sc-auth/proxy', createProxyMiddleware({
+    target: API_SERVICE_URL,
+    changeOrigin: true,
+    pathRewrite: {
+        [`^/sc-auth/proxy`]: '',
+    },
+ }));
 
 // listen for requests
 app.listen(3000, () => {
