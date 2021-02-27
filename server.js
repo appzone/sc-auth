@@ -1,4 +1,10 @@
 const express = require('express');
+var https = require('https');
+var fs = require('fs');
+var privateKey  = fs.readFileSync('key.pem', 'utf8');
+var certificate = fs.readFileSync('cert.pem', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
+
 const bodyParser = require('body-parser');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
@@ -46,6 +52,9 @@ app.use('/sc-auth/proxy', createProxyMiddleware({
  }));
 
 // listen for requests
-app.listen(3000, () => {
-    console.log("Server is listening on port 3000");
-});
+// app.listen(3000, () => {
+//     console.log("Server is listening on port 3000");
+// });
+
+var httpsServer = https.createServer(credentials, app);
+httpsServer.listen(3000);
